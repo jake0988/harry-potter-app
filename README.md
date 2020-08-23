@@ -1,0 +1,1 @@
+A group of roomates each own records. This MVC is created so that an individual owner can keep track of his/her record collection. Each record has an owner and each owner has many records.
