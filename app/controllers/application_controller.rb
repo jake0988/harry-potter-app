@@ -23,5 +23,5 @@ class ApplicationController < Sinatra::Base
         @current_owner ||= Owner.find_by(id: session[:user_id]) if session[:user_id]
     end
 
-    end
+end
 end

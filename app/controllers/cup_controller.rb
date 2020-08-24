@@ -7,8 +7,9 @@ class CupController < ApplicationController
 
     get '/cups/new' do
         if logged_in?
-            erb :'cups/create_cup
+            erb :'/cups/create_cup'
         else
             redirect '/login'
         end
     end
+end
