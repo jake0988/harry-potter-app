@@ -1,10 +1,10 @@
-<h2>Welcome to Fwitter!</h2>
+<h2>Welcome to Hogwartz!</h2>
 <p>Please signin or signup below:</p>
 
 <nav>
   <% if logged_in? %>
 
-    <a href="/tweets/new"> Create Tweet </a>
+    <a href="/houses/show_house/@student.house_id"> view house secret </a>
     <a href="/logout"> Log Out </a>
     <p>Welcome, <%=current_user.username %></p>
 

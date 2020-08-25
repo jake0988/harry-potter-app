@@ -10,18 +10,23 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    if logged_in?
+      @student = Student.find(session[:student_id])
     erb :index
+    end
   end
 
   helpers do
     
+    def current_student
+      @current_student ||= Student.find_by(id: session[:user_id]) if session[:user_id]
+  end
+
     def logged_in?
-        !!current_owner
+        !!current_student
     end
 
-    def current_user
-        @current_owner ||= Owner.find_by(id: session[:user_id]) if session[:user_id]
-    end
+   
 
 end
 end
