@@ -1,23 +1,23 @@
 class StudentsController < ApplicationController
-    get '/students/:slug' do
-        @student = Student.find_by_slug(params[:slug])
-        erb :'/students/show'
-    end
+    # get '/students/:slug' do
+    #     @student = Student.find_by_slug(params[:slug])
+    #     erb :'/students/show'
+    # end
 
     get '/signup' do
         if logged_in?
-            @id = session[:student_id]
-            redirect "/student/#{@id}"
+            redirect "/students/#{session[:student_id]}"
         else
             erb :'/students/create_student'
         end
     end
 
     post '/students' do
-        @student = Student.new(:name => params[name])
+        @student = Student.create(:first_name => params[:name][:first])
+        @student.password = params[:password]
         @student.house_id = params[:house]
         @student.save
-
+        session[:student_id] = @student.id
         redirect "/students/#{@student.id}"
     end
 
@@ -30,9 +30,9 @@ class StudentsController < ApplicationController
     end
 
     post '/students/login' do
-        if logged_in?
-            @student = session[:id]
-            session[:student_id] = @student.id
+        student = Student.find_by(username: params[:username])
+        if student && student.authenticate(params[:password])
+            session[:student_id] = student.id
             redirect "students/#{@student.id}"
         else
             redirect '/login'
@@ -41,10 +41,11 @@ class StudentsController < ApplicationController
 
     get '/students/:id' do
         if logged_in?
-            @student = Student.find(params[:id])
-                erb :"/students/#{@student.id}"
+            binding.pry
+            @student = Student.find(session[:student_id])  
+            erb :"/students/show"
         else
-            redirect '/students/login'
+            redirect '/login'
         end
     end
 

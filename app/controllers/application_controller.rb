@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "record_secret"
+    set :session_secret, "abacadabra"
   end
 
   get '/' do
@@ -18,13 +18,15 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     
+    def logged_in?
+      !!current_student
+    end
+
     def current_student
-      @current_student ||= Student.find_by(id: session[:user_id]) if session[:user_id]
+      @current_student ||= Student.find_by(id: session[:student_id]) if session[:student_id]
   end
 
-    def logged_in?
-        !!current_student
-    end
+ 
 
    
 
