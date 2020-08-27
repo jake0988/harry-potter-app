@@ -12,8 +12,8 @@ class ApplicationController < Sinatra::Base
   get '/' do
     if logged_in?
       @student = Student.find(session[:student_id])
-    erb :index
     end
+    erb :index
   end
 
   helpers do
@@ -24,11 +24,16 @@ class ApplicationController < Sinatra::Base
 
     def current_student
       @current_student ||= Student.find_by(id: session[:student_id]) if session[:student_id]
-  end
+    end
 
+    def admin_logged_in?
+      !!current_admin
+    end
  
+    def current_admin
+      binding.pry
+      @current_student ||= Student.find_by(:username => "Dumbledore") if session[:admin_id]
+    end
 
-   
-
-end
+    end
 end

@@ -67,4 +67,13 @@ class StudentsController < ApplicationController
         end
     end
 
+    get '/logout' do
+        if logged_in?
+            session.destroy
+        erb :'/login'
+        else
+            redirect "/"
+        end
+    end
+
 end
