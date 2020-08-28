@@ -31,7 +31,6 @@ class ApplicationController < Sinatra::Base
     end
  
     def current_admin
-      binding.pry
       @current_student ||= Student.find_by(:username => "Dumbledore") if session[:admin_id]
     end
 
