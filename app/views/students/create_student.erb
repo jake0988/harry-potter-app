@@ -1,5 +1,7 @@
 <form action="/students" method="POST">
-
+<% if @error %>
+<p> <%= @error %></p>
+<% end %>
 <label for="first_name">First Name</labl>
 <input type="text" id="first_name" name="name[first]">
 <label for="last_name">Last Name</label>
