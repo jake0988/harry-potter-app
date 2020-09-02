@@ -16,28 +16,25 @@ class StudentsController < ApplicationController
     end
 
     post '/students' do
-        @student = Student.create(:username => params[:username])
-        @student.first_name = params[:name][:last]
-        @student.last_name = params[:name][:first]
-        @student.password = params[:password]
-        num = house_conversion(params[:house][:number])
-        @student.house_id = num
+        @student = Student.create(:username => params[:student][:username])
+        @student.first_name = params[:student][:first]
+        @student.last_name = params[:student][:last]
+        @student.password = params[:student][:password]
+        if params[:student][:house]
+        @student.house_id = params[:student][:house].first.to_i
+        end
         @student.save
-
-        if !@student.valid?
-            # session[:error] = @student.errors.messages
-            # binding.pry
-            @student.reload
-            binding.pry
-            redirect '/signup'
-        elsif params[:username] == "Dumbledore"
-            binding.pry
+        if params[:student][:username] == "Dumbledore" && @student_id
             session[:admin_id] == @student.id
+        end
+        if @student.errors.messages
+            # session[:error] = @student.errors.messages
+            flash[:message] = @student.errors.messages
+            redirect '/signup'
+      
         elsif @student.id
-            binding.pry
             redirect "/students/#{@student.id}"
         else
-            binding.pr
             redirect "/"
         end
     end
@@ -71,7 +68,7 @@ class StudentsController < ApplicationController
     get '/students/:id' do
         if logged_in?
             @student = Student.find(session[:student_id])  
-            # binding.pry
+    
             erb :"/students/show"
         else
             redirect '/login'
@@ -89,10 +86,33 @@ class StudentsController < ApplicationController
 
     get '/students/:id/edit' do
         @student = Student.find(params[:id])
-        if session[student_id] = @student.id
-            erb :"/students/#{@student.id}"
+        if @student.house_id
+            @house = @student.house_id
         else
-            redirect '/students/'
+            @house = []
+        end
+        if @student.last_name
+            @last = @student.last_name
+        else
+            @last = []
+        end
+        
+        if @student.first_name
+            @first = @student.first_name
+        else
+            @first = []
+        end
+
+        if @student.cup_winners.last != nil
+            @cup = @student.cup_winners.last.year
+        else
+            @cup = []
+        end
+
+        if logged_in? && session[:student_id] == @student.id || current_admin
+            erb :"/students/edit_student"
+        else
+            redirect '/login'
         end
     end
 
@@ -112,6 +132,11 @@ class StudentsController < ApplicationController
         else
             redirect "/"
         end
+    end
+
+    get '/delete' do
+        Student.delete_all
+        redirect '/'
     end
 
 end

@@ -1,6 +1,6 @@
 Hello <%=@student.username%> </br>
-<p>We have your first name as: <%=@student.first_name%></p>
-<p>We have your last name as: <%=@student.last_name%></p> 
-<p>We have your house as: <%=@student.house_id%> </p>
-<p>Your house's last victory in Quidditch was in: <%=@student.cup_winners.last.year%></p>
-<p>View <a href="/houses/<%=@student.house.name%></a><%=@student.house.name%>"</p>
+<p>We have your first name as: <%=@first%></p>
+<p>We have your last name as: <%=@last%></p> 
+<p>We have your house as: <%=@house%> </p>
+<p>Your house's last victory in Quidditch was in: <%=@cup%></p>
+<p>View <a href="/houses/<%=@student.house_id%></a><%=@student.house_id%>"</p>
