@@ -1,21 +1,23 @@
+<% if flash.has?(:message) %>
+  <p><h1><i><%= flash[:message] %><i></h1></p>
+<% end %>
 <form action="/students" method="POST">
 <label for="first_name">First Name</labl>
-<input type="text" id="first_name" name="first">
+<input type="text" id="first_name" name="student[first]">
 <label for="last_name">Last Name</label>
-<input type="text" id="last_name" name="last">
+<input type="text" id="last_name" name="student[last]">
 <p><label for="username">Username</label>
 <input type="text" id="username" name="student[username]"></p>
 <p><label for="gryffindor">Gryffindor</label>
-<input type="checkbox" id="gryffindor" name="student[][house]" value="1">
+<input type="checkbox" id="gryffindor" name="student[house]" value="1">
 <label for="hufflepuff">Hufflepuff</label>
-<input type="checkbox" id="hufflepuff" name="student[][house]" value="2"></p>
+<input type="checkbox" id="hufflepuff" name="student[house]" value="2"></p>
 <p><label for="ravenclaw">Ravenclaw</label>
-<input type="checkbox" id="ravenclaw" name="student[][house]" value="3">
+<input type="checkbox" id="ravenclaw" name="student[house]" value="3">
 <label for="slytherin">Slytherin</label>
-<input type="checkbox" id="slytherin" name="student[][house]" value="4"</p>
+<input type="checkbox" id="slytherin" name="student[house]" value="4"</p>
 <p><label for="password">Password</label>
-<input type="text" name="student[password]"></p>
-<p><label for="re_password">Re-enter Password</label>
-<input type="text" id="re_password" name="student[password]"></p>
+<input type="text" name="password"></p>
 <p><input type="submit" id="submit"></p>
 </form> 
+
