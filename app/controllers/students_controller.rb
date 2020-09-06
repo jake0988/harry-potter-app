@@ -23,8 +23,14 @@ class StudentsController < ApplicationController
         end
         @student = Student.create(:username => params[:student][:username])
         @student.first_name = params[:student][:first]
+        if @student.first_name == nil
+            @student.first_name = "Unknown"
+        end
         @student.last_name = params[:student][:last]
-        @student.password = params[:password]
+        if @student.last_name == nil
+            @student.last_name = "Unknown"
+        end
+            @student.password = params[:password]
         if params[:student][:house]
         @student.house_id = params[:student][:house].to_i
         end
@@ -69,26 +75,26 @@ binding.pry
     get '/students/:id' do
         if logged_in?
             @student = Student.find(session[:student_id])  
-            binding.pry
+
             if @student.house_id
-                @house = @student.house_id
+                @house = @student.house.name
             else
                 @house = []
             end
             if @student.last_name
                 @last = @student.last_name
             else
-                @last = []
+                @last = "Unknown"
             end
             
             if @student.first_name
                 @first = @student.first_name
             else
-                @first = []
+                @first = "Unknown"
             end
     
-            if @student.cup_winners.last != nil
-                @cup = @student.cup_winners.last.year
+            if @student.house.cup_winners.last != nil
+                @cup = @student.house.cup_winners.last.year
             else
                 @cup = []
             end

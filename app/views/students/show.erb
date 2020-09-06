@@ -3,4 +3,4 @@ Hello <%=@student.username%> </br>
 <p>We have your last name as: <%=@last%></p> 
 <p>We have your house as: <%=@house%> </p>
 <p>Your house's last victory in Quidditch was in: <%=@cup%></p>
-<p>View <a href="/houses/<%=@student.house_id%></a><%=@student.house_id%>"</p>
+<p>View <a href="/houses/<%=@student.house.name.downcase%>">House</a></p>

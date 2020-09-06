@@ -34,19 +34,19 @@ class ApplicationController < Sinatra::Base
     end
  
     def current_admin
-      @current_student ||= Student.find_by(:username => "Dumbledore") if session[:admin_id]
+      @current_student ||= Student.find_by(:username => "Dumbledore") if session[:admin_id] || Student.find_by(:username => "Pomona") if session[:admin_id] || Student.find_by(:username => "Rowena") if session[:admin_id] || Student.find_by(:username => "Salazar") if session[:admin_id]
     end
 
     def house_conversion(house_id)
       case house_id
-        when "Gryffendore"
-          return 1
-        when "Hufflepuff"
-          return 2
-        when "Ravenclaw"
-          return 3
-        when "Syltherin"
-          return 4
+        when 1
+          return "gryffindor"
+        when 2
+          return "hufflepuff"
+        when 3
+          return "ravenclaw"
+        when 4 
+          return "syltherin"
         end
       end 
 
