@@ -3,7 +3,6 @@
 
 <nav>
   <% if logged_in? %>
-
     <a href="/houses/<%="#{@student.house_id}"%>"> view today's house secret </a>
     <a href="/logout"> Log Out </a>
     <p>Welcome, <%=current_student.username %></p>

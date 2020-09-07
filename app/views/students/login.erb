@@ -1,3 +1,7 @@
+<% if flash[:message] != "" %>
+<%=   flash[:message] %>
+<% end %></br>
+
 <form method="POST" action="/login">
 <input type="text" name="student[username]" placeholder="username">
 <input type="text" name="password" placeholder="password">

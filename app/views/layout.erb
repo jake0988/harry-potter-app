@@ -8,9 +8,15 @@
   <body>
 <h1>WELCOME TO HOGWARTS</h1>
 <ul>
+<% if logged_in? %>
+<li><a href="/students/<%= session[:student_id] %>">show profile</a></li>
+<li><a href="/students/<%= session[:student_id] %>/edit">edit profile</a></li>
+<li><a href="/logout"> logout </a></li>
+<% else %>
 <li><a href="/signup">signup</a></li>
 <li><a href="/login">login</a></li>
 <li><a href="/logout"> logout </a></li>
+<% end %>
 </ul>
 
  <div class="container">

@@ -3,4 +3,9 @@ Hello <%=@student.username%> </br>
 <p>We have your last name as: <%=@last%></p> 
 <p>We have your house as: <%=@house%> </p>
 <p>Your house's last victory in Quidditch was in: <%=@cup%></p>
-<p>View <a href="/houses/<%=@student.house.name.downcase%>">House</a></p>
+<p>View <a href="/houses/<%=@student.house.name%>">House</a></p>
+
+<form action="/students/<%= @student.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete profile">
+</form>
