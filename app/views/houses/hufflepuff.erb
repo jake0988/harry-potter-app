@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class="col col-1">
+    <img src="https://vignette.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest?cb=20161020182518" alt="Hufflepuff Emblem" width="500" height="600">
+      </div>
+      <div class="col col-2">
+    <% if current_student.house_id == @house.id %>
+
+    <% @house.students.each.with_index(1) do |student, index| %>
+        <% if student == @student %>
+        <h1><%= "#{index}: #{student.username}"%> -- username </h1></br>
+        <%= student.first_name %>
+        <%= student.last_name %></br>
+    <% else %>    
+    <h1><%= "#{index}: #{student.username}"%> -- username </h1></br>
+    <%= student.first_name %>
+      <%= student.last_name %> -- name</br>
+    <% end %>
+    <% end %>
+    <p><a href="https://harrypotter.fandom.com/wiki/Hufflepuff_Basement#:~:text=In%20order%20to%20reveal%20the,the%20basement%20when%20crawled%20through." target="_blank">View House secret</a></p>
+    <% end %>
+    </ul>
+  </div>
+</div>

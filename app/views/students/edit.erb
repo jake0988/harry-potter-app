@@ -1,0 +1,18 @@
+<form action="/students/<%= @student.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+<label for="username">Username</label>
+<input type="text" name="student[username]" id="username" value=" <%= @user %>">
+<label for="first_name">First Name</label>
+<input type="text" id="first_name" name="student[first]" value="<%= @first %>">
+<label for="last_name">Last Name</label>
+<input type="text" id="last_name" name="student[last]" value="<%= @last %>">
+<p><label for="gryffindor">Gryffindor</label>
+<input type="checkbox" id="gryffindor" name="house[]" value="1" <% if @house == 1 %> checked <% end %>>
+<label for="hufflepuff">Hufflepuff</label>
+<input type="checkbox" id="hufflepuff" name="house[]" value="2" <% if @house == 2 %> checked <% end %>></p>
+<p><label for="ravenclaw">Ravenclaw</label>
+<input type="checkbox" id="ravenclaw" name="house[]" value="3" <% if @house == 3 %> checked <% end %>>
+<label for="slytherin">Slytherin</label>
+<input type="checkbox" id="slytherin" name="house[]" value="4" <% if @house == 4 %> checked <% end %>></p>
+</p><input type="submit" value="Edit Profile"></p>
+</form>

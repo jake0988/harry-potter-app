@@ -1,0 +1,18 @@
+<img src="https://vignette.wikia.nocookie.net/harrypotter/images/4/4e/RavenclawCrest.png/revision/latest?cb=20161020182442" alt="Ravenclaw Emblem" width="500" height="600">
+
+<% if current_student.house_id == @house.id %>
+
+<% @house.students.each.with_index(1) do |student, index| %>
+    <% if student == @student %>
+    <h1><%= "#{index}: #{student.username}" %>
+    <%= student.first_name %>
+    <%= student.last_name %></h1></br>
+<% else %>    
+<%= "#{index}: #{student.username}" %>
+<%= student.first_name %>
+  <%= student.last_name %></br>
+<% end %>
+<% end %>
+<p><a href="https://screenrant.com/harry-potter-secrets-ravenclaw-common-room/" target="_blank">View House secret</a></p>
+<% end %>
+</ul>

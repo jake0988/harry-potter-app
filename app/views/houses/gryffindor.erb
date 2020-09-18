@@ -1,0 +1,18 @@
+
+<img src="https://vignette.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_ClearBG.png/revision/latest?cb=20190222162949" alt="Gryffindor Emblem" width="500" height="600">
+<% if current_student.house_id == @house.id %>
+
+<% @house.students.each.with_index(1) do |student, index| %>
+    <% if student == @student %>
+    <h1><%= "#{index}: #{student.username}" %>
+    <%= student.first_name %>
+    <%= student.last_name %></h1></br>
+<% else %>    
+<%= "#{index}: #{student.username}" %>
+<%= student.first_name %>
+  <%= student.last_name %></br>
+<% end %>
+<% end %>
+<p><a href="https://screenrant.com/secrets-gryffindor-common-room-hogwarts/" target="_blank">View House secret</a></p>
+<% end %>
+</ul>

@@ -1,0 +1,13 @@
+<p>Total wins for Gryffindor: <%= @cups.where(name: "Gryffindor").size %></p>
+<p>Total wins for Hufflepuff: <%= @cups.where(name: "Hufflepuff").size %></p>
+<p>Total wins for Ravenclaw: <%= @cups.where(name: "Ravenclaw").size %></p>
+<p>Total wins for Slytherin: <%= @cups.where(name: "Slytherin").size %></p>
+<hr>
+</br>
+<ul>
+<%@cups.each do |cup|%>
+<li>Year: <p><%=cup.year%></li>
+<li>Winner: <h1><%=cup.name%>!!!!</h1><p></li>
+<hr>
+<%end%>
+</ul>

@@ -1,0 +1,7 @@
+<form action="/favorites/<%= favorites.id %>" method="PATCH">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+<label for="person">Name</label>
+<input type="text" value="<%= @favorite.person %>" id="person" name="student[:person]"
+<label for="content">Description</label>
+<input type="text" value="<%= @favorite.content %>" id="content" name="student[:content]"
+</form>
