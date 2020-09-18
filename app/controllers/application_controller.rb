@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
     end
  
     def current_admin
-      @current_student ||= Student.find_by(:username => "Dumbledore") if session[:admin_id] || Student.find_by(:username => "Pomona") if session[:admin_id] || Student.find_by(:username => "Rowena") if session[:admin_id] || Student.find_by(:username => "Salazar") if session[:admin_id]
+      Student.find_by(:username => "Dumbledore") if session[:admin_id] || Student.find_by(:username => "Pomona") if session[:admin_id] || Student.find_by(:username => "Rowena") if session[:admin_id] || Student.find_by(:username => "Salazar") if session[:admin_id]
     end
 
     def house_conversion(house_id)

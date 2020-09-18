@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
         session[:student_id] = @student.id
 
         if params[:student][:username] == "Dumbledore" || params[:student][:username] == "Pomona" || params[:student][:username] == "Rowena" || params[:student][:username] == "Salazar"
-            session[:admin_id] = @student.id.to_s
+            @student.update(:admin => true)
         elsif session[:student_id]
             redirect "/students/#{session[:student_id]}"
         else
