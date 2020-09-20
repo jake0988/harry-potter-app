@@ -29,6 +29,10 @@ class ApplicationController < Sinatra::Base
       @current_student ||= Student.find_by(id: session[:student_id]) if session[:student_id]
     end
 
+    def admin?
+      @current_student.admin
+    end
+
     def admin_logged_in?
       !!current_admin
     end

@@ -1,15 +1,15 @@
 class StudentsController < ApplicationController
 
     get '/signup' do
-        session[:message] = ""
+        flash[:message]
         flash[:message] = ""
         if logged_in?
             redirect "/students/#{session[:student_id]}"
         else
-            if session[:error]
-                @error = session[:error]
+            if params[:username] == ""
+                flash[:message] = "Username is required"
             end
-            erb :'/students/create_student'
+                erb :'/students/create_student'
         end
     end
 
