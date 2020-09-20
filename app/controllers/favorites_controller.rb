@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
     get '/favorites' do
         flash[:message]
         if Favorite.nil?
-            flash[:message] = "Be the first to enter a favorite person!"
+            flash[:message] = "Be the first to enter a favorite band!"
             flash[:message]
             redirect '/favorites/new'
         else
@@ -26,7 +26,7 @@ class FavoritesController < ApplicationController
             if params[:comment] == ""
                 redirect '/favorites/new'
             else
-                @favorite = current_student.favorites.create(person: params[:student][:person], comment: params[:student][:comment])
+                @favorite = current_student.favorites.create(band: params[:student][:band], comment: params[:student][:comment])
                 if @favorite.save
                     redirect "/favorites/#{@favorite.id}"
                 else
@@ -55,7 +55,7 @@ class FavoritesController < ApplicationController
             @favorite = Favorite.find(params[:id])
             if @favorite && @favorite.student_id == current_student.id 
                 @student = Student.find(session[:student_id])
-                @person = @favorite.person
+                @band = @favorite.band
                 @comment = @favorite.comment
                 erb :'/favorites/show_favorite'
             else
@@ -82,16 +82,16 @@ class FavoritesController < ApplicationController
     patch '/favorites/:id' do
         if logged_in?
             
-            @person = params[:student][:person]
-            if @person == ""
-                flash[:message] = "Please enter favorite person's name"
+            @band = params[:student][:band]
+            if @band == ""
+                flash[:message] = "Please enter favorite band's name"
                 flash[:message]
                 redirect "/favorites"
             else
                 
                 @comment = params[:student][:comment]
                 @favorite = Favorite.find(params[:id])
-                @favorite.update(person: @person, comment: @comment)
+                @favorite.update(band: @band, comment: @comment)
                 if @favorite && @favorite.student_id == current_student.id
                     
                     
