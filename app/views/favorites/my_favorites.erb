@@ -1,0 +1,12 @@
+<h1>List of my Favorite people</h1>
+<ol>
+<% @favorites.each do |favorite| %>
+<p><li><strong><%= favorite.person %></strong> 
+    
+    <% if favorite.comment %>
+        <em>Reason Why:</em> 
+        <%= favorite.comment %></li></p>
+    <% end %>
+    <a href="/favorites/<%= favorite.id %>/edit">Edit</a>
+<% end %>
+</ol>
