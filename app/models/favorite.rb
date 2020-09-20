@@ -1,4 +1,4 @@
 class Favorite < ActiveRecord::Base
-    validates :person, presence: true
+    validates :band, presence: true
     belongs_to :student
 end
