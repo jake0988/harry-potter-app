@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
     get '/signup' do
         flash[:message]
         flash[:message] = ""
+        binding.pry
         if logged_in?
             redirect "/students/#{session[:student_id]}"
         else
