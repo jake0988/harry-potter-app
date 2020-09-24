@@ -1,16 +1,10 @@
-<h2>Welcome to Hogwartz!</h2>
-<p>Please signin or signup below:</p>
-
-<nav>
-  <% if logged_in? %>
-    <a href="/houses/<%="#{@student.house_id}"%>"> view today's house secret </a>
-    <a href="/logout"> Log Out </a>
-    <p>Welcome, <%=current_student.username %></p>
-
+<h2>Welcome to Hogwartz <% if logged_in? %>
+    <strong><%=current_student.username %></strong>
   <% else %>
+  <nav>
     <a href="/signup">Sign Up</a>
     <a href="/login"> Sign In </a>
     
   <% end %>
-
+!!!</h2> 
 </nav>

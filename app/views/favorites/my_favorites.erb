@@ -1,4 +1,8 @@
 <h1>List of my favorite bands</h1>
+<% if @favorites == [] %>
+    You don't have any favorite bands :(
+<% end %>
+
 <ol>
 <% @favorites.each do |favorite| %>
 <p><li><strong><%= favorite.band %></strong> 
@@ -10,3 +14,4 @@
     <a href="/favorites/<%= favorite.id %>/edit">Edit</a>
 <% end %>
 </ol>
+

@@ -1,9 +1,9 @@
 class StudentsController < ApplicationController
 
+
     get '/signup' do
         flash[:message]
         flash[:message] = ""
-        binding.pry
         if logged_in?
             redirect "/students/#{session[:student_id]}"
         else
@@ -15,32 +15,32 @@ class StudentsController < ApplicationController
     end
 
     post '/students' do
-        if Student.find_by(:username => params[:student][:username].downcase)
+        if Student.find_by(:username => params[:username].downcase)
             flash[:message] = "Username already taken"
             flash[:message] 
             redirect :'/signup'
         end
-        @student = Student.create(:username => params[:student][:username])
-        @student.first_name = params[:student][:first]
+        @student = Student.create(:username => params[:username])
+        @student.first_name = params[:first]
         if @student.first_name == ""
             @student.first_name = "Unknown"
         end
-        @student.last_name = params[:student][:last]
+        @student.last_name = params[:last]
         if @student.last_name == ""
             @student.last_name = "Unknown"
         end
             @student.password = params[:password]
-        if !params[:student][:house]
+        if !params[:house]
             flash[:message] = "Choose a House"
             flash[:message] 
             redirect '/signup'
         else
-            @student.house_id = params[:student][:house].to_i
+            @student.house_id = params[:house].to_i
         end
         @student.save
         session[:student_id] = @student.id
 
-        if params[:student][:username] == "Dumbledore" || params[:student][:username] == "Pomona" || params[:student][:username] == "Rowena" || params[:student][:username] == "Salazar"
+        if params[:username] == "Dumbledore" || params[:username] == "Pomona" || params[:username] == "Rowena" || params[:username] == "Salazar"
             @student.update(:admin => true)
         elsif session[:student_id]
             redirect "/students/#{session[:student_id]}"
@@ -65,16 +65,17 @@ class StudentsController < ApplicationController
     end
 
     post '/login' do
-        student = Student.find_by(username: params[:student][:username])
-        if student && params[:student][:username] = "Dumbledore"
-            session[:admin_id] = student.id
-        end
+        student = Student.find_by(username: params[:username])
+        
         if student && student.authenticate(params[:password])
             session[:student_id] = student.id
             redirect "students/#{student.id}"
         else
             redirect '/login'
         end
+        # if student && params[:username] = "Dumbledore"
+        #     session[:admin_id] = student.id
+        # end
     end
 
     get '/students/:id' do
@@ -152,9 +153,9 @@ class StudentsController < ApplicationController
     patch '/students/:id' do
         if logged_in?
                 @student = Student.find(session[:student_id])
-                @student.username = params[:student][:username]     
-                @student.first_name = params[:student][:first]      
-                @student.last_name = params[:student][:last]          
+                @student.username = params[:username]     
+                @student.first_name = params[:first]      
+                @student.last_name = params[:last]          
                 @student.house_id =  params[:house].first
                 @student.save
             redirect "/students/#{@student.id}"        

@@ -1,8 +1,11 @@
 <form action="/favorites/<%= @favorite.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="PATCH">
-<label for="band">Name</label>
-<input type="text" value="<%= @favorite.band %>" id="band" name="student[band]">
-<label for="content">Description</label>
-<input type="text" value="<%= @favorite.comment %>" id="comment" name="student[comment]">
+<label for="band">Name: </label>
+<input type="text" value="<%= @favorite.band %>" id="band" name="band">
+<label for="content">Description: </label>
+<input type="textarea" value="<%= @favorite.comment %>" name="comment">
+<label for="band_url">Band website: </label>
+<input type="text" value="<%= @favorite.band_url %>" name="band_url">
 <input type="submit" value="submit">
 </form>
+

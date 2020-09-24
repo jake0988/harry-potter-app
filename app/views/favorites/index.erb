@@ -1,11 +1,14 @@
 <h1>List of favorite bands</h1>
 <ol>
 <% @favorites.each do |favorite| %>
-<p><li><strong><%= favorite.band %></strong> 
+<li><strong><%= favorite.band %></strong> 
     
     <% if favorite.comment %>
         <em>Reason Why:</em> 
-        <%= favorite.comment %></li></p>
+        <%= favorite.comment %>
     <% end %>
+    
+    <a href="/favorites/<%= favorite.id %>/edit">edit</a></li>
 <% end %>
+
 </ol>

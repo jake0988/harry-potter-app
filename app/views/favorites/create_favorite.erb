@@ -1,6 +1,10 @@
 <h1>What are your favorite bands and why?</h1>
 <form action="/favorites" method="POST">
-<input type="text" name="student[band]" placeholder="band's name (Required)">
-<input type="text" name="student[comment]" placeholder="Why this band? (Optional)">
+<label for="band">band</label>
+<input type="text" name="band" placeholder="(Required)">
+<label for="comment">comment</label>
+<input type="textarea" name="comment" placeholder="(Optional)">
+<label for="band_url">band_url</label>
+<input type="text" name="band_url" placeholder="(Optional)">
 <input type="submit" value="submit">
 </form>

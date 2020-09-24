@@ -4,6 +4,10 @@
 <h3>Your reason why is as follows: <i>"<%= @favorite.comment %>"</i><h3>
 <% end %>
 
+<% if @band_url %>
+<h4> <%= @band.pluralize %> website: <%= @band_url %> </h4>
+<% end %>
+
 <a href="/favorites/<%= @favorite.id %>/edit">Edit</a>
 
 <form action="/favorites/<%= @favorite.id %>/delete" method="POST">

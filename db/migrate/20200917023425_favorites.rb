@@ -4,6 +4,7 @@ class Favorites < ActiveRecord::Migration[6.0]
       t.integer :student_id
       t.string :band
       t.string :comment
+      t.string :band_url
 
       t.timestamps null: false
     end

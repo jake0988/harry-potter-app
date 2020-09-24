@@ -1,11 +1,11 @@
 <form action="/students/<%= @student.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="PATCH">
 <label for="username">Username</label>
-<input type="text" name="student[username]" id="username" value=" <%= @user %>">
+<input type="text" name="[username]" id="username" value=" <%= @user %>">
 <label for="first_name">First Name</label>
-<input type="text" id="first_name" name="student[first]" value="<%= @first %>">
+<input type="text" id="first_name" name="[first]" value="<%= @first %>">
 <label for="last_name">Last Name</label>
-<input type="text" id="last_name" name="student[last]" value="<%= @last %>">
+<input type="text" id="last_name" name="[last]" value="<%= @last %>">
 <p><label for="gryffindor">Gryffindor</label>
 <input type="checkbox" id="gryffindor" name="house[]" value="1" <% if @house == 1 %> checked <% end %>>
 <label for="hufflepuff">Hufflepuff</label>

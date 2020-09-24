@@ -40,6 +40,10 @@ class ApplicationController < Sinatra::Base
     def current_admin
       Student.find_by(:username => "Dumbledore") if session[:admin_id] || Student.find_by(:username => "Pomona") if session[:admin_id] || Student.find_by(:username => "Rowena") if session[:admin_id] || Student.find_by(:username => "Salazar") if session[:admin_id]
     end
+    
+    def authorized_to_edit?(favorite)
+      favorite.student == current_student
+    end
 
     def house_conversion(house_id)
       case house_id

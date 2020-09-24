@@ -6,13 +6,23 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-<h1>WELCOME TO HOGWARTS</h1>
+<h1>WELCOME TO HOGWARTS </h1>
+
+<% if flash[:error]  %>
+<p><i><h1 style="color:red;"><%= flash[:error] %></h1></i></p>
+<%  end %>
+
+<% if flash[:message]  %>
+<%= flash[:message] %>
+<%  end %>
+
 <ul>
 <% if logged_in? %>
 <li><a href="/students/<%= session[:student_id] %>">show profile</a></li>
 <li><a href="/students/<%= session[:student_id] %>/edit">edit profile</a></li>
 <li><a href="/favorites/new">new favorite band!</a></li>
 <li><a href="/favorites/me">my favorite bands!</a></li>
+<li><a href="/favorites">everyone's favorite bands!</a></li>
 <li><a href="/logout"> logout </a></li>
 <% else %>
 <li><a href="/signup">signup</a></li>

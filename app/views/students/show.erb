@@ -5,7 +5,7 @@ Hello <%=@student.username%> </br>
 <p>Your house's last victory in Quidditch was in: <%=@cup%></p>
 <p>View <a href="/houses/<%=@student.house.name%>">House</a></p>
 <p><a href="/favorites">View everyone's favorite bands</a></p>
-<form action="/students/<%= @student.id %>" method="POST">
+<form action="/s/<%= @student.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="delete profile">
 </form>

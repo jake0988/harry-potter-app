@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_09_17_023425) do
     t.integer "student_id"
     t.string "band"
     t.string "comment"
+    t.string "band_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
