@@ -4,6 +4,7 @@
 <p>Total wins for Slytherin: <%= @cups.where(name: "Slytherin").size %></p>
 <hr>
 </br>
+
 <ul>
 <%@cups.each do |cup|%>
 <li>Year: <p><%=cup.year%></li>
